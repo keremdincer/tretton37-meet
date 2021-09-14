@@ -12,6 +12,19 @@ const theme = {
   }
 }
 
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Header></Header>
+      <Layout>
+        <Meet />
+      </Layout>
+      <Footer></Footer>
+    </ThemeProvider>
+  );
+}
+
 const Layout = styled.div`
   width: 80%;
   margin: 0 auto;
@@ -29,18 +42,5 @@ const Footer = styled.footer`
   height: 60px;
   background-color: ${props => props.theme.colors.primary};
 `
-
-const App = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Header></Header>
-      <Layout>
-        <Meet />
-      </Layout>
-      <Footer></Footer>
-    </ThemeProvider>
-  );
-}
 
 export default App;

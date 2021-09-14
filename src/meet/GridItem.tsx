@@ -7,6 +7,25 @@ import {
 } from 'react-icons/si'
 import { Employee } from '../api'
 
+const GridItem: React.FC<Employee> = ({ name, office, imagePortraitUrl, gitHub, linkedIn, twitter }) => {
+  return (
+    <Wrapper>
+      <ImageWrapper>
+        <img src={imagePortraitUrl + '-medium'} alt={`${name}`} />
+      </ImageWrapper>
+      <ItemBody>
+        <h3>{name}</h3>
+        <p>{office}</p>
+      </ItemBody>
+      <Links>
+        {gitHub && <a href={`https://github.com/${gitHub}`}><SiGithub /></a>}
+        {linkedIn && <a href={`https://linkedin.com${linkedIn}`}><SiLinkedin /></a>}
+        {twitter && <a href={`https://twitter.com/${twitter}`}><SiTwitter /></a>}
+      </Links>
+    </Wrapper>
+  )
+}
+
 const Wrapper = styled.section`
   background-color: #fff;
   border: 2px solid transparent;
@@ -36,7 +55,7 @@ const ImageWrapper = styled.div`
   }
 `
 
-const CardBody = styled.div`
+const ItemBody = styled.div`
   padding: 0 8px 8px 8px;
   flex: 1 0 auto; // for IE10+
 
@@ -73,23 +92,4 @@ const Links = styled.div`
   }
 `
 
-const Card: React.FC<Employee> = ({ name, office, imagePortraitUrl, gitHub, linkedIn, twitter }) => {
-  return (
-    <Wrapper>
-      <ImageWrapper>
-        <img src={imagePortraitUrl + '-medium'} alt={`${name}`} />
-      </ImageWrapper>
-      <CardBody>
-        <h3>{name}</h3>
-        <p>{office}</p>
-      </CardBody>
-      <Links>
-        {gitHub && <a href={`https://github.com/${gitHub}`}><SiGithub /></a>}
-        {linkedIn && <a href={`https://linkedin.com${linkedIn}`}><SiLinkedin /></a>}
-        {twitter && <a href={`https://twitter.com/${twitter}`}><SiTwitter /></a>}
-      </Links>
-    </Wrapper>
-  )
-}
-
-export default Card
+export default GridItem
