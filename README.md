@@ -33,12 +33,15 @@ My priority was Functionality for this project. My previous experiences was main
 ### 1. Install packages
 ```yarn``` or ```npm install```
 
-### 2. Run project (For Development)
+### 2. Set env variables
+Rename the .env.example file to .env and set variables in the file with corresponding values. (api url & api key)
+
+### 3. Run project (For Development)
 ```yarn start``` or ```npm start```
 
-### 3. Build project (Required for IE11)
+### 4. Build project (Required for IE11)
 ```yarn build``` or ```npm run build```
 
-### 4. Run project (For Production)
+### 5. Run project (For Production)
 ```yarn global add serve``` or ```npm install --global serve```
 ```serve -s build```
