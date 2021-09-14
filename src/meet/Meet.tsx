@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import { Employee, getAllEmployees } from '../api'
+import Card from './Card'
 
 const Header = styled.header`
   padding: 32px 0;
@@ -38,18 +40,6 @@ const Grid = styled.section`
   justify-content: center;
 `
 
-const Card = styled.section`
-  width: 200px;
-  height: 266px;
-  background-color: #fff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
 const GridFooter = styled.section`
   text-align: center;
   padding: 24px 0;
@@ -64,6 +54,14 @@ const GridFooter = styled.section`
 `
 
 const Meet = () => {
+  const [employees, setEmployees] = React.useState<Employee[]>([])
+
+  useEffect(() => {
+    getAllEmployees().then(employees => {
+      setEmployees(employees)
+    }).catch(error => { })
+  }, [])
+
   return (
     <div>
       <Header>
@@ -78,10 +76,8 @@ const Meet = () => {
         </Toolbar>
 
         <Grid>
-          {Array.from(Array(10).keys()).map(i => (
-            <Card key={i}>
-              {i}
-            </Card>
+          {employees.map(employee => (
+            <Card key={employee.name} {...employee} />
           ))}
         </Grid>
 
